@@ -1,0 +1,15 @@
+<div id="textarea" class="flex flex-col px-16 outline rounded-2xl mx-24">
+  <form (ngSubmit)="onSubmit()" class="flex flex-col my-10">
+      <textarea class="w-full h-24 text-lg bg-yellow-50"
+        [(ngModel)]="textareaContent"
+        name="textareaInput"
+        placeholder="Saisissez votre texte ici"
+        [ngModelOptions]="{ standalone: true }"
+      ></textarea>
+    <button type="submit" class="outline p-3 rounded-md justify-center my-10 bg-yellow-400">{{ buttonText}}</button>
+  </form>
+
+  <div *ngIf="outputText" class="text-lg my-10">
+    <h3>Résultat :</h3>
+  </div>
+</div>

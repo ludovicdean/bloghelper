@@ -1,0 +1,10 @@
+#title {
+    display: flex;
+    justify-content: center;
+    font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 2rem;
+}
+#form{
+    margin: auto;
+}
