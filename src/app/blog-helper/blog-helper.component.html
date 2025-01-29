@@ -1,0 +1,34 @@
+<h2 class="text-2xl px-64 my-8">
+  Articles déjà publiés ({{ publishedArticlesCount$ | async }})
+</h2>
+<ul
+  *ngIf="publishedArticles$ | async as articles"
+  class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:mx-16 md:mx-32 lg:mx-8"
+>
+  <li *ngFor="let article of articles" class="list-none">
+    <div class="outline outline-yellow-400 rounded-xl my-8 h-full">
+      <div class="bg-yellow-400 rounded-t-md p-4">{{ article.title }}</div>
+      <div class="flex justify-between p-4">
+        <div>{{ article.date | date : "dd/MM/yyyy" }}</div>
+        <div class="hidden lg:block">{{ article.tags }}</div>
+      </div>
+    </div>
+  </li>
+</ul>
+<h2 class="block text-2xl px-64 mt-16">
+  Articles en attente de publication ({{ unpublishedArticlesCount$ | async }})
+</h2>
+<ul
+  *ngIf="unpublishedArticles$ | async as articles"
+  class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:mx-16 md:mx-32 lg:mx-8"
+>
+  <li *ngFor="let article of articles" class="list-none">
+    <div class="outline outline-blue-400 rounded-xl my-8 h-full">
+      <div class="bg-blue-400 rounded-t-md p-4">{{ article.title }}</div>
+      <div class="flex justify-between p-4">
+        <div>{{ article.date | date : "dd/MM/yyyy" }}</div>
+        <div>{{ article.tags }}</div>
+      </div>
+    </div>
+  </li>
+</ul>

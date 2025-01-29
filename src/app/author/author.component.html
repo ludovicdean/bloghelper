@@ -6,10 +6,6 @@
         placeholder="Saisissez votre texte ici"
         [ngModelOptions]="{ standalone: true }"
       ></textarea>
-    <button type="submit" class="outline p-3 rounded-md justify-center my-10 bg-yellow-400">{{ buttonText}}</button>
+    <button type="submit" class="outline outline-yellow-400 p-3 rounded-md font-bold justify-center my-10" [ngClass]="backgroundColor ? 'bg-slate-950 outline-slate-950 text-yellow-400' : 'bg-yellow-400'">{{ buttonText}}</button>
   </form>
-
-  <div *ngIf="outputText" class="text-lg my-10">
-    <h3>Résultat :</h3>
-  </div>
 </div>

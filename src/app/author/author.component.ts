@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { NgIf } from '@angular/common';
+import { NgClass } from '@angular/common';
 
 @Component({
   selector: 'app-author',
-  imports: [FormsModule, NgIf],
+  imports: [FormsModule, NgClass],
   templateUrl: './author.component.html',
   styleUrl: './author.component.css',
   standalone: true,
@@ -16,6 +16,7 @@ export class AuthorComponent {
   picture: string = '';
   outputText: string = '';
   buttonText: string = 'Formater';
+  backgroundColor: boolean = false;
 
   onSubmit() {
     const result = this.extractImageInfo(this.textareaContent);
@@ -37,8 +38,11 @@ export class AuthorComponent {
     }
 
     const text: string = "author: \"" + authorMatch[2] + "\"\nauthorLink: \"" + authorMatch[1] + "\"\nunsplashLink: \"" + unsplashMatch[1] + "\"";
-
+console.log(this.backgroundColor);
     navigator.clipboard.writeText(text)
+    this.backgroundColor = true;
     this.buttonText = 'C\'est prêt !';
+console.log(this.backgroundColor);
+
   }
 }

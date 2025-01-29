@@ -1,0 +1,14 @@
+<ul
+  *ngIf="tags$ | async as tags"
+  class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:mx-16 md:mx-32 lg:mx-8"
+>
+  <li *ngFor="let tag of tags" class="list-none">
+    <div class="outline outline-yellow-400 rounded-xl my-8 h-full">
+      <div class="bg-yellow-400 rounded-t-md p-4">{{ tag.name }}</div>
+      <div class="flex justify-between p-4">
+        <div>{{ tag.description }}</div>
+        <div>{{ tag.nombreArticles }}</div>
+      </div>
+    </div>
+  </li>
+</ul>

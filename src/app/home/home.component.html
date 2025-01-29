@@ -1,0 +1,27 @@
+<h1 class="py-8 text-2xl text-slate-950">DevEnDevenir en chiffres</h1>
+
+<p class="text-xl py-4">Total d'articles : {{ totalArticlesCount$ | async }}</p>
+<p class="text-xl py-4">
+  Articles déjà publiés : {{ publishedArticlesCount$ | async }}
+</p>
+<p class="text-xl py-4">
+  Articles en attente de publication : {{ unPublishedArticlesCount$ | async }}
+</p>
+
+<p class="text-xl py-4">Tags : {{ tagDataCount$ | async }}</p>
+
+<ul *ngIf="tagsData$ | async as tags" class="w-96">
+  <li *ngFor="let tag of tags" class="list-none">
+    <div class="flex items-center">
+      <span class="text-md font-medium text-gray-700 w-40">{{
+        tag.name
+      }}</span>
+      <div class="w-full bg-gray-200 rounded-full h-4">
+        <div
+          class="bg-blue-600 h-4 rounded-full"
+          [style.width]="getPercentage(tag)"
+        ></div>
+      </div>
+    </div>
+  </li>
+</ul>
