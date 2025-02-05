@@ -1,4 +1,9 @@
 export interface Article {
+id: string;
+data: Data;
+}
+
+export interface Data {
   title: string;
   description: string;
   date: Date;

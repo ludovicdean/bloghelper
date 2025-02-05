@@ -1,0 +1,29 @@
+   <div class="container mx-auto px-4 py-8">
+    <h1 class="text-3xl font-bold mb-8">Articles du Blog</h1>
+    
+    <div *ngIf="blogEntries$ | async as yearSortedEntries">
+      <div *ngFor="let yearEntry of yearSortedEntries | keyvalue" class="mb-12">
+        <h2 class="text-2xl font-semibold mb-4 text-gray-800 border-b pb-2">{{ yearEntry.key }}</h2>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div *ngFor="let entry of yearEntry.value" class="bg-white rounded-lg shadow-md overflow-hidden">
+            <div class="p-6">
+              <h3 class="text-xl font-semibold mb-2 text-gray-800">{{ entry.data.title }}</h3>
+              <p class="text-sm text-gray-600 mb-4">
+                <span class="mr-4">{{ entry.data.date | date:'dd MMM yyyy' }}</span>
+                
+              </p>
+              <p class="text-gray-700 mb-4">{{ entry.data.description }}</p>
+              <div class="flex flex-wrap gap-2 mb-4">
+                <span *ngFor="let tag of entry.data.tags" class="bg-gray-200 text-gray-700 px-2 py-1 rounded-full text-sm">
+                  {{ tag }}
+                </span>
+              </div>
+              <a href="#" class="text-blue-600 hover:underline">Lire l'article →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

@@ -1,27 +1,57 @@
-<h1 class="py-8 text-2xl text-slate-950">DevEnDevenir en chiffres</h1>
-
-<p class="text-xl py-4">Total d'articles : {{ totalArticlesCount$ | async }}</p>
-<p class="text-xl py-4">
-  Articles déjà publiés : {{ publishedArticlesCount$ | async }}
-</p>
-<p class="text-xl py-4">
-  Articles en attente de publication : {{ unPublishedArticlesCount$ | async }}
-</p>
-
-<p class="text-xl py-4">Tags : {{ tagDataCount$ | async }}</p>
-
-<ul *ngIf="tagsData$ | async as tags" class="w-96">
-  <li *ngFor="let tag of tags" class="list-none">
-    <div class="flex items-center">
-      <span class="text-md font-medium text-gray-700 w-40">{{
-        tag.name
-      }}</span>
-      <div class="w-full bg-gray-200 rounded-full h-4">
-        <div
-          class="bg-blue-600 h-4 rounded-full"
-          [style.width]="getPercentage(tag)"
-        ></div>
+<div class="container mx-auto p-6">
+  <h1 class="text-3xl font-bold mb-6 text-center">DevEnDevenir Dashboard</h1>
+  
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+    <div class="bg-white p-6 rounded-lg shadow">
+      <h2 class="text-xl font-semibold mb-4">Statistiques Générales</h2>
+      <div class="grid grid-cols-2 gap-4">
+        <div class="bg-blue-100 p-4 rounded">
+          <p class="text-sm text-blue-800">Articles Total</p>
+          <p class="text-2xl font-bold text-blue-600">{{ totalArticlesCount$ | async }}</p>
+        </div>
+        <div class="bg-green-100 p-4 rounded">
+          <p class="text-sm text-green-800">Articles Publiés</p>
+          <p class="text-2xl font-bold text-green-600">{{ publishedArticlesCount$ | async }}</p>
+        </div>
+        <div class="bg-yellow-100 p-4 rounded">
+          <p class="text-sm text-yellow-800">En Attente</p>
+          <p class="text-2xl font-bold text-yellow-600">{{ unPublishedArticlesCount$ | async }}</p>
+        </div>
+        <div class="bg-purple-100 p-4 rounded">
+          <p class="text-sm text-purple-800">Dernier Article</p>
+          <p class="text-2xl font-bold text-purple-600">{{ lastArticleDate$ | async | date:'dd MMMM yyyy':'':'fr' }}</p>
+        </div>
       </div>
     </div>
-  </li>
-</ul>
+    
+    <div class="bg-white p-6 rounded-lg shadow">
+      <h2 class="text-xl font-semibold mb-4">Répartition par Tag</h2>
+      <div class="h-64 bg-gray-200 rounded-lg flex items-center justify-center">
+        <ul *ngIf="tagsData$ | async as tags" class="pl-10 w-full">
+          <li *ngFor="let tag of tags" class="list-none">
+            <div class="flex items-center">
+              <span class="text-md font-medium text-gray-700 w-40">{{
+                tag.name
+              }}</span>
+              <div class="w-full bg-gray-100 rounded-full h-4 mr-10">
+                <div
+                  class="bg-blue-600 h-4 rounded-full"
+                  [style.width]="getPercentage(tag)"
+                ></div>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+<!--   
+  <div class="bg-white p-6 rounded-lg shadow">
+    <h2 class="text-xl font-semibold mb-4">Articles Récents</h2>
+    <ul class="space-y-2">
+      <li class="p-2 bg-gray-100 rounded">1. Titre de l'article le plus récent</li>
+      <li class="p-2 bg-gray-100 rounded">2. Deuxième article le plus récent</li>
+      <li class="p-2 bg-gray-100 rounded">3. Troisième article le plus récent</li>
+    </ul>
+  </div> -->
+</div>
