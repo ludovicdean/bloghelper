@@ -1,16 +1,21 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { BlogService } from '../blog.service';
 import { TagService } from '../tag.service';
-import { map, Observable, tap, combineLatest, first } from 'rxjs';
+import { map, Observable, combineLatest } from 'rxjs';
 import { Tag } from '../model/tag';
-import { AsyncPipe, DatePipe, NgFor, NgIf } from '@angular/common';
+import { TagsStatsComponent } from '../tags-stats/tags-stats.component';
+import { ArticlesStatsComponent } from "../articles-stats/articles-stats.component";
+import { WarningComponent } from '../warning/warning.component';
+import { AsyncPipe, NgIf } from '@angular/common';
+import { UsefulLinksComponent } from "../useful-links/useful-links.component";
 
 @Component({
   selector: 'app-home',
-  imports: [AsyncPipe, NgIf, NgFor, DatePipe],
+  imports: [TagsStatsComponent, ArticlesStatsComponent, WarningComponent, NgIf, AsyncPipe, UsefulLinksComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
+
 export class HomeComponent implements OnInit {
   publishedArticlesCount$: Observable<number>;
   unPublishedArticlesCount$: Observable<number>;
@@ -18,7 +23,8 @@ export class HomeComponent implements OnInit {
   tagDataCount$: Observable<number>;
   test: Date;
   totalArticlesCount$: Observable<number>;
-  lastArticleDate$: Observable<Date>;
+  lastArticleDate$: Observable<Date | null>;
+  isLastArticleOld$: Observable<boolean>;
   tags: Tag[];
   constructor(private blogService: BlogService, private tagService: TagService){}
 
@@ -35,13 +41,19 @@ export class HomeComponent implements OnInit {
       map(([published, unpublished]) => published + unpublished)
     );
 
-    this.lastArticleDate$ = this.blogService.getFrontmatterData().pipe(
-          first(),
-          map(article => article[0].data.date)
-        );
-  }
+    this.lastArticleDate$ = this.blogService.getLastArticleDate();
+    
+    this.isLastArticleOld$ = this.lastArticleDate$.pipe(
+      map(lastArticleDate => {
+        if (!lastArticleDate) {
+          return false; // Pas d'articles, donc pas besoin d'afficher l'alerte
+        }
 
-  getPercentage(tag: { nombreArticles: number }): string {
-    return `${(tag.nombreArticles / 32) * 100}%`;
+        const oneWeekAgo = new Date().getTime() - 7*24*60*60*1000;
+        const dateDernierArticle = (typeof lastArticleDate === 'string' ? new Date(lastArticleDate) : lastArticleDate).getTime();
+
+        return dateDernierArticle < oneWeekAgo;
+      })
+    );
   }
 }

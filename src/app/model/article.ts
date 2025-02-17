@@ -1,6 +1,7 @@
 export interface Article {
 id: string;
 data: Data;
+isMax: boolean;
 }
 
 export interface Data {
@@ -14,4 +15,5 @@ export interface Data {
   unsplashlink: string;
   isArticle: boolean;
   tags: string[];
+  url: string;
 }

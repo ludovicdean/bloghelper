@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { Observable, tap } from 'rxjs';
+import { Component } from '@angular/core';
+import { Observable } from 'rxjs';
 import { Tag } from '../model/tag';
 import { TagService } from '../tag.service';
 import { CommonModule, AsyncPipe, NgFor, NgIf } from '@angular/common';
@@ -10,13 +10,9 @@ import { CommonModule, AsyncPipe, NgFor, NgIf } from '@angular/common';
   templateUrl: './tags-helper.component.html',
   styleUrl: './tags-helper.component.css'
 })
-export class TagsHelperComponent implements OnInit {
+export class TagsHelperComponent {
 tags$: Observable<Tag[]>;
+sortedTags$: Observable<Tag[]>;
 
-constructor(private tagService: TagService) {}
-  ngOnInit(): void {
-    this.tags$ = this.tagService.getTagsData();
-  }
-
-
+constructor(private tagService: TagService) {this.tags$ = this.tagService.getTagsData();}
 }

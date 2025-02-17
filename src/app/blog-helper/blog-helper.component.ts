@@ -1,11 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { BlogService } from '../blog.service';
-import { NgFor, DatePipe, NgIf, AsyncPipe } from '@angular/common';
+import { AsyncPipe } from '@angular/common';
 import { Article } from '../model/article';
 import { Observable } from 'rxjs';
+import { CardListComponent } from '../card-list/card-list.component';
+import { UnpublishedCardListComponent } from '../unpublished-card-list/unpublished-card-list.component';
+
 
 @Component({
-  imports: [NgFor, DatePipe, NgIf, AsyncPipe],
+  imports: [AsyncPipe, CardListComponent, UnpublishedCardListComponent],
   selector: 'app-blog-helper',
   templateUrl: './blog-helper.component.html',
   styleUrl: './blog-helper.component.css',
@@ -23,6 +26,7 @@ export class BlogHelperComponent implements OnInit {
 
   ngOnInit() {
     this.articles$ = this.blogService.getFrontmatterData();
+    // this.articles$ = this.blogService.;
 
     this.unpublishedArticles$ = this.blogService.getUnPublishedArticles();
 

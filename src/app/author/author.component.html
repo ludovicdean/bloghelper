@@ -1,11 +1,14 @@
-<div id="textarea" class="flex flex-col px-16 outline rounded-2xl mx-24">
-  <form (ngSubmit)="onSubmit()" class="flex flex-col my-10">
-      <textarea class="w-full h-24 text-lg bg-yellow-50"
+<div class="bg-white shadow-lg rounded-lg overflow-hidden mx-auto max-w-2xl">
+  <div class="p-6">
+    <form (ngSubmit)="onSubmit()" class="flex flex-col">
+      <textarea 
+        class="w-full h-32 p-3 mb-4 text-gray-700 border rounded-lg focus:outline-none focus:border-blue-500 resize-none"
         [(ngModel)]="textareaContent"
         name="textareaInput"
         placeholder="Saisissez votre texte ici"
         [ngModelOptions]="{ standalone: true }"
       ></textarea>
-    <button type="submit" class="outline outline-yellow-400 p-3 rounded-md font-bold justify-center my-10" [ngClass]="backgroundColor ? 'bg-slate-950 outline-slate-950 text-yellow-400' : 'bg-yellow-400'">{{ buttonText}}</button>
-  </form>
+      <button type="submit" class="outline p-3 rounded-md font-bold justify-center my-10" [ngClass]="backgroundColor ? 'bg-slate-950 outline-slate-950 text-yellow-400' : 'bg-yellow-400'">{{ buttonText}}</button>
+    </form>
+  </div>
 </div>

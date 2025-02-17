@@ -1,0 +1,21 @@
+<div class="bg-white p-6 rounded-lg shadow-lg h-full">
+    <h2 class="text-2xl font-bold mb-4">Statistiques Générales</h2>
+    <div class="grid grid-cols-2 gap-4">
+      <div class="bg-blue-100 px-4 py-8 rounded-xl">
+        <p class="text-xl text-blue-800">Articles Total</p>
+        <p class="text-2xl font-bold text-blue-600">{{ totalArticlesCount$ | async }}</p>
+      </div>
+      <div class="bg-green-100 px-4 py-8 rounded-xl">
+        <p class="text-xl text-green-800">Articles Publiés</p>
+        <p class="text-2xl font-bold text-green-600">{{ publishedArticlesCount$ | async }}</p>
+      </div>
+      <div class="bg-yellow-100 px-4 py-8 rounded-xl">
+        <p class="text-xl text-yellow-800">En Attente</p>
+        <p class="text-2xl font-bold text-yellow-600">{{ unPublishedArticlesCount$ | async }}</p>
+      </div>
+      <div class="bg-purple-100 px-4 py-8 rounded-xl">
+        <p class="text-xl text-purple-800">Dernier Article</p>
+        <p class="text-2xl font-bold text-purple-600">{{ lastArticleDate$ | async | date:'dd MMMM yyyy':'':'fr' }}</p>
+      </div>
+    </div>
+  </div>

@@ -38,11 +38,9 @@ export class AuthorComponent {
     }
 
     const text: string = "author: \"" + authorMatch[2] + "\"\nauthorLink: \"" + authorMatch[1] + "\"\nunsplashLink: \"" + unsplashMatch[1] + "\"";
-console.log(this.backgroundColor);
-    navigator.clipboard.writeText(text)
+
+    navigator.clipboard.writeText(text);
     this.backgroundColor = true;
     this.buttonText = 'C\'est prêt !';
-console.log(this.backgroundColor);
-
   }
 }

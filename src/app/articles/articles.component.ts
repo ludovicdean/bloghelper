@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, numberAttribute, OnInit } from '@angular/core';
 import { filter, map, Observable, tap } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { AsyncPipe, DatePipe, KeyValuePipe, NgFor, NgIf } from '@angular/common';
@@ -24,9 +24,13 @@ getBlogEntries(): Observable<YearSortedData> {
     map(yearSortedData => {
       Object.keys(yearSortedData).forEach(year => {
         yearSortedData[year].sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime());
-        console.log(year);
       });
-      return yearSortedData;
+      
+      // Créer un nouvel objet avec les années triées par ordre décroissant
+      return Object.fromEntries(
+        Object.entries(yearSortedData)
+          .sort(([yearA], [yearB]) => Number(yearB) - Number(yearA))
+      );
     }),
     tap(entries => console.log(entries))
   );

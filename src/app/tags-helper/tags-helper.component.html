@@ -1,14 +1,18 @@
-<ul
-  *ngIf="tags$ | async as tags"
-  class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:mx-16 md:mx-32 lg:mx-8"
->
-  <li *ngFor="let tag of tags" class="list-none">
-    <div class="outline outline-yellow-400 rounded-xl my-8 h-full">
-      <div class="bg-yellow-400 rounded-t-md p-4">{{ tag.name }}</div>
-      <div class="flex justify-between p-4">
-        <div>{{ tag.description }}</div>
-        <div>{{ tag.nombreArticles }}</div>
+<div *ngIf="tags$ | async as tags" class="container mx-auto px-4 py-8">
+  <ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+    <li *ngFor="let tag of tags" class="list-none">
+      <div class="bg-white shadow-md rounded-lg overflow-hidden transition-transform duration-300 hover:scale-105 hover:shadow-xl border border-yellow-200 flex flex-col h-full">
+        <div class="bg-yellow-400 h-1"></div>
+        <div class="p-6 flex-grow flex flex-col">
+          <h3 class="text-xl font-semibold mb-2 text-slate-800 line-clamp-2">{{ tag.name }}</h3>
+          <div class="flex justify-between items-center text-sm text-slate-600 mb-4">
+            <span>{{ tag.description }}</span>
+          </div>
+        </div>
+        <div class="px-6 py-4 bg-slate-50 border-t border-slate-100">
+          <a [href]="'http://localhost:4321/devendevenir/tags/'+ tag.id" class="text-yellow-600 hover:text-yellow-700 font-medium">Lire la suite →</a>
+        </div>
       </div>
-    </div>
-  </li>
-</ul>
+    </li>
+  </ul>
+</div>
