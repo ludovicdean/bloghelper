@@ -6,12 +6,12 @@ import { Tag } from '../model/tag';
 import { TagsStatsComponent } from '../tags-stats/tags-stats.component';
 import { ArticlesStatsComponent } from "../articles-stats/articles-stats.component";
 import { WarningComponent } from '../warning/warning.component';
-import { AsyncPipe, NgIf } from '@angular/common';
+import { AsyncPipe } from '@angular/common';
 import { UsefulLinksComponent } from "../useful-links/useful-links.component";
 
 @Component({
   selector: 'app-home',
-  imports: [TagsStatsComponent, ArticlesStatsComponent, WarningComponent, NgIf, AsyncPipe, UsefulLinksComponent],
+  imports: [TagsStatsComponent, ArticlesStatsComponent, WarningComponent, AsyncPipe, UsefulLinksComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })

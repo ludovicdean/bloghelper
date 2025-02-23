@@ -1,11 +1,12 @@
 import { Component, Input } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Article } from '../model/article';
-import { AsyncPipe, DatePipe, NgFor, NgIf } from '@angular/common';
+import { AsyncPipe, NgFor, NgIf } from '@angular/common';
+import { CardComponent } from "../card/card.component";
 
 @Component({
   selector: 'app-published-card-list',
-  imports: [NgIf, NgFor, DatePipe, AsyncPipe],
+  imports: [NgIf, NgFor, AsyncPipe, CardComponent],
   templateUrl: './card-list.component.html',
   styleUrl: './card-list.component.css'
 })

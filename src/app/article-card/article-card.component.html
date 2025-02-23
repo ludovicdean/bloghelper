@@ -1,0 +1,17 @@
+<div class="bg-white shadow-md rounded-lg overflow-hidden transition-transform duration-300 hover:scale-105 hover:shadow-xl flex flex-col h-full"
+         [class.border-yellow-200]="isPublished()"
+         [class.border-blue-200]="!isPublished()"> <!-- Bordure dynamique -->
+      <div [class.bg-yellow-400]="isPublished()" [class.bg-blue-400]="!isPublished()" class="h-1"></div> <!-- Ligne de couleur dynamique -->
+      <div class="p-6 flex-grow flex flex-col">
+        <h3 class="text-xl font-semibold mb-2 text-slate-800 line-clamp-2">{{ article.data.title }}</h3>
+        <div class="flex justify-between items-center text-sm text-slate-600 mb-4">
+          <span>{{ article.data.date | date : "dd MMM yyyy" }}</span>
+        </div>
+        <div class="flex flex-wrap gap-2 mt-auto">
+          <ng-content select=".tags"></ng-content> <!-- Slot pour les tags -->
+        </div>
+      </div>
+      <div class="px-6 py-4 bg-slate-50 border-t border-slate-100 flex justify-between">
+        <ng-content select=".actions"></ng-content> <!-- Slot pour les actions (Lire la suite, etc.) -->
+      </div>
+    </div>

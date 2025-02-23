@@ -6,4 +6,5 @@
 <h2 class="block text-2xl px-6 my-8">
   Articles en attente de publication ({{ unpublishedArticlesCount$ | async }})
 </h2>
-<app-unpublished-card-list [unpublishedArticles$] = "unpublishedArticles$"></app-unpublished-card-list>
+
+<app-published-card-list [publishedArticles$] = "unpublishedArticles$"></app-published-card-list>

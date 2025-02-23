@@ -1,0 +1,13 @@
+<label for="doc">
+  <img src="/images/download.png" alt="upload icon" width="50" height="50" />
+  <div>
+     <h4>Déposer un fichier</h4>
+  </div>
+  <input type="file" id="doc" name="doc" hidden (change)="onFileSelected($event)"/>
+  <img #jpgImage id="jpgImage" src="" alt="Image JPG" style="display: none;">
+</label>
+
+<a id="downloadLink" [href]="webpDataURL" [download]="downloadFileName" *ngIf="downloadLinkVisible">
+  Télécharger WebP
+</a>
+

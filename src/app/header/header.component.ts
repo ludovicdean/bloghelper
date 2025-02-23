@@ -1,10 +1,9 @@
-import { NgClass } from '@angular/common';
 import { ChangeDetectorRef, Component } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { NavLinkComponent } from "../nav-link/nav-link.component";
 
 @Component({
   selector: 'app-header',
-  imports: [RouterLink, NgClass],
+  imports: [NavLinkComponent],
   templateUrl: './header.component.html',
   styleUrl: './header.component.css'
 })

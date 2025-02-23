@@ -9,9 +9,7 @@
             <span>{{ tag.description }}</span>
           </div>
         </div>
-        <div class="px-6 py-4 bg-slate-50 border-t border-slate-100">
-          <a [href]="'http://localhost:4321/devendevenir/tags/'+ tag.id" class="text-yellow-600 hover:text-yellow-700 font-medium">Lire la suite →</a>
-        </div>
+        <app-card-link context="tag" id="{{ tag.id }}" />
       </div>
     </li>
   </ul>

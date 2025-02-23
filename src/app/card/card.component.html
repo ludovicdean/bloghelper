@@ -1,0 +1,25 @@
+<div class="bg-white shadow-md rounded-lg overflow-hidden transition-transform duration-300 hover:scale-105 hover:shadow-xl flex flex-col h-full"
+  [ngClass]="{ 'border-yellow-400': article.data.date, 'border-blue-200': !article.data.date }">
+  <div class="h-1"
+[ngClass]="{ 'bg-yellow-400': article.data.date, 'bg-blue-400': !article.data.date }"></div>
+  <div class="p-6 flex-grow flex flex-col">
+    <h3 class="text-xl font-semibold mb-2 text-slate-800 line-clamp-2">
+      {{ article.data.title }}
+    </h3>
+    @if (article.data.date) { <span class="flex justify-between items-center text-sm text-slate-600 mb-4">{{ article.data.date | date : "dd MMM yyyy" }}</span> }
+    <div class="flex items-center justify-between mt-auto">
+      <div class="flex flex-wrap gap-2">
+        <span *ngFor="let tag of article.data.tags" class="px-2 py-1 rounded-full text-xs font-medium"
+          [ngClass]="{ 'bg-yellow-100 text-yellow-800': article.data.date, 'bg-blue-100 text-blue-800': !article.data.date }" >
+          {{ tag }}
+        </span>
+      </div>
+      @if (article.isMax && !article.data.date) {
+      <img src="/images/max.png" alt="" width="25" height="25" />
+      }
+    </div>
+  </div>
+  @if (article.data.date) {
+  <app-card-link context="article" url={{article.data.url}} id={{article.id}} />
+  }
+</div>

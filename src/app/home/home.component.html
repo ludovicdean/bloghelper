@@ -1,9 +1,7 @@
 <div class="container mx-auto p-6">
   <h1 class="text-3xl font-bold mb-6">Dashboard</h1>
 
-  <div *ngIf="isLastArticleOld$ | async">
-    <app-warning></app-warning>
-  </div>
+  @if (isLastArticleOld$ | async) {<app-warning />}
   <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
     <app-articles-stats
       [totalArticlesCount$]="totalArticlesCount$"
@@ -11,11 +9,10 @@
       [unPublishedArticlesCount$]="unPublishedArticlesCount$"
       [lastArticleDate$]="lastArticleDate$"
       class="flex-1"
-    >
-    </app-articles-stats>
-    <app-tags-stats [tagsData$]="tagsData$" [publishedArticlesCount$]="publishedArticlesCount$" class="flex-1"></app-tags-stats>
+    />
+    <app-tags-stats [tagsData$]="tagsData$" [publishedArticlesCount$]="publishedArticlesCount$" class="flex-1" />
   </div>
   <div class="bg-white p-6 rounded-lg shadow-lg h-full">
-    <app-useful-links></app-useful-links>
+    <app-useful-links />
   </div>
 </div>

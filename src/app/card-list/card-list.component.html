@@ -1,25 +1,7 @@
 <div *ngIf="publishedArticles$ | async as articles" class="container mx-auto px-4 py-8">
     <ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
       <li *ngFor="let article of articles" class="list-none">
-        <div class="bg-white shadow-md rounded-lg overflow-hidden transition-transform duration-300 hover:scale-105 hover:shadow-xl border border-yellow-200 flex flex-col h-full">
-          <div class="bg-yellow-400 h-1"></div>
-          <div class="p-6 flex-grow flex flex-col">
-            <h3 class="text-xl font-semibold mb-2 text-slate-800 line-clamp-2">{{ article.data.title }}</h3>
-            <div class="flex justify-between items-center text-sm text-slate-600 mb-4">
-              <span>{{ article.data.date | date : "dd MMM yyyy" }}</span>
-            </div>
-            <div class="flex flex-wrap gap-2 mt-auto">
-              <span *ngFor="let tag of article.data.tags" 
-                    class="bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full text-xs font-medium">
-                {{ tag }}
-              </span>
-            </div>
-          </div>
-          <div class="px-6 py-4 bg-slate-50 border-t border-slate-100 flex justify-between">
-            <a [href]="article.data.url ? article.data.url : 'http://localhost:4321/devendevenir/blog/'+ article.id" class="text-yellow-600 hover:text-yellow-700 font-medium">Lire la suite →</a>
-            @if (article.data.url) {<img src="/images/max.png" alt="" width="25" height="25">}
-          </div>
-        </div>
+        <app-card [article]="article"></app-card>
       </li>
     </ul>
   </div>

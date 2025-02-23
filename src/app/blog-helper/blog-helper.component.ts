@@ -4,11 +4,9 @@ import { AsyncPipe } from '@angular/common';
 import { Article } from '../model/article';
 import { Observable } from 'rxjs';
 import { CardListComponent } from '../card-list/card-list.component';
-import { UnpublishedCardListComponent } from '../unpublished-card-list/unpublished-card-list.component';
-
 
 @Component({
-  imports: [AsyncPipe, CardListComponent, UnpublishedCardListComponent],
+  imports: [AsyncPipe, CardListComponent],
   selector: 'app-blog-helper',
   templateUrl: './blog-helper.component.html',
   styleUrl: './blog-helper.component.css',
