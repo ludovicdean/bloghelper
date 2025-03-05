@@ -12,7 +12,7 @@ export class BlogService {
   private unPublishedArticlesData$: Observable<Article[]>;
 
   constructor(private http: HttpClient) {
-    this.frontmatterData$ = this.http.get<Article[]>('http://localhost:4321/devendevenir/api/frontmatter.json').pipe(
+    this.frontmatterData$ = this.http.get<Article[]>('http://ludovicdean.github.io/devendevenir/api/frontmatter.json').pipe(
       map(articles => articles.sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime())),
       shareReplay(1)
     );

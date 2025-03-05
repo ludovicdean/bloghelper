@@ -14,7 +14,7 @@ export class TagService {
 
   getTagsData(): Observable<Tag[]> {
     // return this.http.get<any[]>('http://ludovicdean.github.io/devendevenir/api/tags.json');
-    return this.http.get<Tag[]>('http://localhost:4321/devendevenir/api/tags.json').pipe(map(tags => tags.sort((a, b) => b.nombreArticles - a.nombreArticles)));
+    return this.http.get<Tag[]>('http://ludovicdean.github.io/devendevenir/api/tags.json').pipe(map(tags => tags.sort((a, b) => b.nombreArticles - a.nombreArticles)));
   }
 
   getTagsDataCount(): Observable<number> {
