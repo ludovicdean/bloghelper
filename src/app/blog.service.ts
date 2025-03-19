@@ -11,6 +11,7 @@ export class BlogService {
   private frontmatterData$: Observable<Article[]>;
   private publishedArticlesData$: Observable<Article[]>;
   private unPublishedArticlesData$: Observable<Article[]>;
+  private groupedByYearArticles$: Observable<YearArticles[]>;
   private baseUrl = environment.baseUrl;
 
   constructor(private http: HttpClient) {
@@ -22,6 +23,8 @@ export class BlogService {
     this.publishedArticlesData$ = this.frontmatterData$.pipe( map(articles => articles.filter(article => !article.id.startsWith('_'))) ); 
 
     this.unPublishedArticlesData$ = this.frontmatterData$.pipe( map(articles => articles.filter(article => article.id.startsWith('_'))) ); 
+
+    this.groupedByYearArticles$ = this.http.get<YearArticles[]>(this.baseUrl + 'api/test.json');
   }
 
   getFrontmatterData(): Observable<Article[]>{ return this.frontmatterData$; }
@@ -56,4 +59,13 @@ export class BlogService {
       })
     );
   }
+
+  getGroupedByYearArticles(): Observable<YearArticles[]>{
+    return this.groupedByYearArticles$;
+  }
+}
+
+export interface YearArticles {
+  year: number;
+  articles: Article[];
 }
