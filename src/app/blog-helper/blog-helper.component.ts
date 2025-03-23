@@ -47,9 +47,8 @@ export class BlogHelperComponent implements OnInit {
 
   getTabClasses(tab: 'published' | 'unpublished'): { [key: string]: boolean } {
     return {
-      'border-t border-l border-r rounded-t-lg bg-white': this.activeTab === tab,
+      'bg-white text-yellow-400 font-semibold': this.activeTab === tab,
       'text-gray-500 hover:text-gray-700 bg-gray-100': this.activeTab !== tab,
-      'border-b': this.activeTab !== tab
     };
   }
 

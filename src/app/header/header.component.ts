@@ -1,5 +1,6 @@
 import { ChangeDetectorRef, Component } from '@angular/core';
 import { NavLinkComponent } from "../nav-link/nav-link.component";
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -10,12 +11,16 @@ import { NavLinkComponent } from "../nav-link/nav-link.component";
 export class HeaderComponent {
   isMenuOpen = false;
 
-  constructor(private cdr: ChangeDetectorRef) {}
+  constructor(private router: Router, private cdr: ChangeDetectorRef) {}
 
   toggleMenu() {
     this.isMenuOpen = !this.isMenuOpen;
     console.log(this.isMenuOpen);
     document.body.classList.toggle('overflow-hidden');
     this.cdr.detectChanges();
+  }
+
+  isRouteActive(route: string): boolean {
+    return this.router.url === route;
   }
 }

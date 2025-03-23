@@ -1,66 +1,31 @@
-<!-- <div class="relative">
-  <div class="flex border-b border-gray-200">
-    <button 
-      (click)="setActiveTab('published')" 
-      [ngClass]="getTabClasses('published')"
-      class="py-2 px-4 text-sm font-medium -mb-px">
-      Publiés ({{ publishedArticlesCount$ | async }})
-    </button>
-    <button 
-      (click)="setActiveTab('unpublished')" 
-      [ngClass]="getTabClasses('unpublished')"
-      class="py-2 px-4 text-sm font-medium -mb-px">
-      En attente ({{ unpublishedArticlesCount$ | async }})
-    </button>
-  </div>
-  
-  <ng-container *ngIf="activeTab === 'published'">
-    <h2 class="text-2xl font-semibold mb-4">Articles publiés</h2>
-    <div *ngIf="groupedByYearArticles$ | async as groupedArticles">
-      <div *ngFor="let yearGroup of groupedArticles" class="mb-8">
-        <h2 class="text-2xl font-semibold mb-4">
-          {{ yearGroup.year }}
-        </h2>
-        <app-card-list [articles$]="getArticlesObservable(yearGroup.articles)" />
-      </div>
-    </div>
-  </ng-container>
-  
-  <ng-container *ngIf="activeTab === 'unpublished'">
-    <h2 class="text-2xl font-semibold mb-4">Articles en attente de publication</h2>
-    <app-card-list [articles$]="unpublishedArticles$"></app-card-list>
-  </ng-container>
-</div>
-
- -->
  <div class="relative">
-  <div class="flex border-b border-gray-200">
+  <div class="flex gap-8 mb-4 px-4">
     <button
       (click)="setActiveTab('published')"
       [ngClass]="getTabClasses('published')"
+      class="text-2xl"
       type="button">
       Publiés ({{ publishedArticlesCount$ | async }})
     </button>
     <button
       (click)="setActiveTab('unpublished')"
       [ngClass]="getTabClasses('unpublished')"
+      class="text-2xl"
       type="button">
       En attente ({{ unpublishedArticlesCount$ | async }})
     </button>
   </div>
 
   <ng-container *ngIf="activeTab === 'published'">
-    <h2 class="text-2xl font-semibold mb-4 mt-4">Articles publiés</h2>
     <div *ngIf="groupedByYearArticles$ | async as groupedArticles">
       <div *ngFor="let yearGroup of groupedArticles" class="mb-8">
-        <h3 class="text-xl font-semibold mb-2">{{ yearGroup.year }}</h3>
+        <h3 class="text-xl font-semibold mb-0 px-4">{{ yearGroup.year }}</h3>
         <app-card-list [articles$]="getArticlesObservable(yearGroup.articles)"></app-card-list>
       </div>
     </div>
   </ng-container>
 
   <ng-container *ngIf="activeTab === 'unpublished'">
-    <h2 class="text-2xl font-semibold mt-4 mb-4">Articles en attente de publication</h2>
     <app-card-list [articles$]="unpublishedArticles$"></app-card-list>
   </ng-container>
 </div>

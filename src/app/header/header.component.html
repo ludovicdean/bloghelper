@@ -6,10 +6,9 @@
 
     <div class="md:block md:w-auto" id="navbar-default">
       <ul class="list-none font-medium flex flex-col p-4 md:p-0 mt-4 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0">
-        <app-nav-link route="/" text="Accueil" />
-        <app-nav-link route="/articles" text="Articles" />
-        <app-nav-link route="/tags" text="Tags" />
-        <app-nav-link route="/unsplash" text="Outils" />
+        <app-nav-link route="/articles" text="Articles" [isActive]="isRouteActive('/articles')"/>
+        <app-nav-link route="/tags" text="Tags" [isActive]="isRouteActive('/tags')"/>
+        <app-nav-link route="/unsplash" text="Outils" [isActive]="isRouteActive('/unsplash')"/>
       </ul>
     </div>
   </div>
