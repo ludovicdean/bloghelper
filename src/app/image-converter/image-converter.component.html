@@ -1,13 +1,31 @@
-<label for="doc">
+<div class="bg-white shadow-lg rounded-lg overflow-hidden mx-auto max-w-2xl w-full h-96 p-8">
+
+
+  <div class="grid grid-cols-3 grid-rows-1 gap-4">
+    <div class="col-span-2 flex">
+      <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="doc"></label>
+<input class="block w-96 text-black text-xl border border-black rounded-lg cursor-pointer bg-yellow-400 focus:outline-black" id="file_input" type="file"  (change)="onFileSelected($event)">
+
+    </div>
+    <div class="col-start-3">
+      <a id="downloadLink" [href]="webpDataURL" [download]="downloadFileName" *ngIf="downloadLinkVisible" class="outline p-3 text-white bg-yellow-400 rounded-md font-bold justify-center my-10" >
+        Télécharger WebP
+      </a>
+    </div>
+</div>
+    
+
+<!-- <label for="doc">
   <img src="/images/download.png" alt="upload icon" width="50" height="50" />
   <div>
      <h4>Déposer un fichier</h4>
   </div>
-  <input type="file" id="doc" name="doc" hidden (change)="onFileSelected($event)"/>
+  <input type="file" id="doc" name="doc" hidden (change)="onFileSelected($event)"/> -->
   <img #jpgImage id="jpgImage" src="" alt="Image JPG" style="display: none;">
-</label>
 
-<a id="downloadLink" [href]="webpDataURL" [download]="downloadFileName" *ngIf="downloadLinkVisible">
-  Télécharger WebP
-</a>
 
+<!-- </label> -->
+
+
+
+</div>

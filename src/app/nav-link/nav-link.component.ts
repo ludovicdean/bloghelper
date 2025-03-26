@@ -1,5 +1,5 @@
 import { NgClass } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
 @Component({
@@ -12,4 +12,9 @@ export class NavLinkComponent {
 @Input() route: string;
 @Input() text: string;
 @Input() isActive: boolean;
+@Output() linkClicked = new EventEmitter<void>();
+
+onLinkClicked() {
+  this.linkClicked.emit();
+}
 }

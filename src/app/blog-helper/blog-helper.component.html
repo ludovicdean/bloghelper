@@ -5,14 +5,14 @@
       [ngClass]="getTabClasses('published')"
       class="text-2xl"
       type="button">
-      Publiés ({{ publishedArticlesCount$ | async }})
+      Publiés <span class="hidden sm:inline">({{ publishedArticlesCount$ | async }})</span>
     </button>
     <button
       (click)="setActiveTab('unpublished')"
       [ngClass]="getTabClasses('unpublished')"
       class="text-2xl"
       type="button">
-      En attente ({{ unpublishedArticlesCount$ | async }})
+      En attente <span class="hidden sm:inline">({{ unpublishedArticlesCount$ | async }})</span>
     </button>
   </div>
 
