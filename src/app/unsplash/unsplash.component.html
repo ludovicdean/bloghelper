@@ -1,23 +1,16 @@
-<!-- <app-author></app-author>
-<app-image-converter></app-image-converter> -->
+<div class="flex mb-4">
+  <button (click)="setActiveTab('author')" [ngClass]="{'text-yellow-400 font-semibold': activeTab === 'author'}"
+    class="py-2 px-4 text-2xl text-gray-800">
+    Infos photo
+  </button>
+  <button (click)="setActiveTab('imageConverter')"
+    [ngClass]="{'text-yellow-400 font-semibold': activeTab === 'imageConverter'}"
+    class="py-2 px-4 text-2xl text-gray-800">
+    Jpg => WebP
+  </button>
+</div>
 
-<div class="flex border-b border-gray-200 mb-4">
-    <button 
-      (click)="setActiveTab('author')" 
-      [ngClass]="{'border-b-2 border-blue-500': activeTab === 'author'}"
-      class="py-2 px-4 text-sm font-medium">
-      Auteur
-    </button>
-    <button 
-      (click)="setActiveTab('imageConverter')" 
-      [ngClass]="{'border-b-2 border-blue-500': activeTab === 'imageConverter'}"
-      class="py-2 px-4 text-sm font-medium">
-      Convertisseur d'images
-    </button>
-  </div>
-  
-  <div [ngSwitch]="activeTab">
-    <app-author *ngSwitchCase="'author'"></app-author>
-    <app-image-converter *ngSwitchCase="'imageConverter'"></app-image-converter>
-  </div>
-  
+<div [ngSwitch]="activeTab">
+  <app-author *ngSwitchCase="'author'"></app-author>
+  <app-image-converter *ngSwitchCase="'imageConverter'"></app-image-converter>
+</div>

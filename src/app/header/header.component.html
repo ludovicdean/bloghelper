@@ -1,18 +1,3 @@
-<!-- <nav class="border-gray-200 bg-gradient-to-br from-black to-gray-900 relative mb-10">
-  <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto py-2 px-4">
-    <a href="/" class="flex items-center h-16">
-      <span class="h-16 self-center text-3xl font-semibold whitespace-nowrap text-white items-center flex">Blog<span class="text-yellow-400">Helper</span></span>
-    </a>
-
-    <div class="md:block md:w-auto" id="navbar-default">
-      <ul class="list-none font-medium flex flex-col p-4 md:p-0 mt-4 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0">
-        <app-nav-link route="/articles" text="Articles" [isActive]="isRouteActive('/articles')"/>
-        <app-nav-link route="/tags" text="Tags" [isActive]="isRouteActive('/tags')"/>
-        <app-nav-link route="/unsplash" text="Outils" [isActive]="isRouteActive('/unsplash')"/>
-      </ul>
-    </div>
-  </div>
-</nav> -->
 <nav class="border-gray-200 bg-gradient-to-br from-black to-gray-900 relative mb-10">
   <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto py-2 px-4">
     <a href="/" class="flex items-center h-16">
@@ -28,9 +13,9 @@
 
     <div [ngClass]="{'hidden': !isMenuOpen}" class="w-full md:block md:w-auto" id="navbar-default">
       <ul class="font-medium flex flex-col p-4 md:p-0 mt-4 rounded-lg bg-gradient-to-br from-black to-gray-900 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-transparent">
-        <app-nav-link route="/articles" text="Articles" (linkClicked)="closeMenu()"/>
-        <app-nav-link route="/tags" text="Tags" (linkClicked)="closeMenu()"/>
-        <app-nav-link route="/unsplash" text="Outils" (linkClicked)="closeMenu()"/>
+        <app-nav-link route="/articles" text="Articles" [isActive]="isRouteActive('/articles')" (linkClicked)="closeMenu()"/>
+        <app-nav-link route="/tags" text="Tags" [isActive]="isRouteActive('/tags')" (linkClicked)="closeMenu()"/>
+        <app-nav-link route="/unsplash" text="Outils" [isActive]="isRouteActive('/unsplash')" (linkClicked)="closeMenu()"/>
       </ul>
     </div>
   </div>
