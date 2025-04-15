@@ -11,6 +11,7 @@ export class BlogService {
   private frontmatterData$: Observable<Article[]>;
   private publishedArticlesData$: Observable<Article[]>;
   private unPublishedArticlesData$: Observable<Article[]>;
+  private groupedByYearArticles$: Observable<YearArticles[]>;
   private baseUrl = environment.baseUrl;
 
   constructor(private http: HttpClient) {
@@ -19,9 +20,11 @@ export class BlogService {
       shareReplay(1)
     );
 
+    this.unPublishedArticlesData$ = this.http.get<Article[]>(this.baseUrl + 'api/unpublished.json');
+
     this.publishedArticlesData$ = this.frontmatterData$.pipe( map(articles => articles.filter(article => !article.id.startsWith('_'))) ); 
 
-    this.unPublishedArticlesData$ = this.frontmatterData$.pipe( map(articles => articles.filter(article => article.id.startsWith('_'))) ); 
+    this.groupedByYearArticles$ = this.http.get<YearArticles[]>(this.baseUrl + 'api/frontmatter.json');
   }
 
   getFrontmatterData(): Observable<Article[]>{ return this.frontmatterData$; }
@@ -30,30 +33,55 @@ export class BlogService {
 
   getPublishedArticles(): Observable<Article[]> { return this.publishedArticlesData$; }
 
-  getPublishedArticlesCount(): Observable<number> { return this.publishedArticlesData$.pipe( map(articles => articles.length) ); }
-
   getUnpublishedArticlesCount(): Observable<number> { return this.unPublishedArticlesData$.pipe( map(articles => articles.length) ); }
 
-  getLastArticleDate(): Observable<Date> { return this.publishedArticlesData$.pipe( map(articles => articles[0]?.data.date) ); }
+  getLastArticleDate(): Observable<Date> { 
+    return this.groupedByYearArticles$.pipe(
+      map(groupedArticles => {
+        if (groupedArticles.length === 0) {
+          return null;
+        }
+        const latestYear = groupedArticles[0];
+        if (latestYear.articles.length === 0) {
+          return null;
+        }
+        return new Date(latestYear.articles[0].data.date);
+      })
+    );
+  }
 
   getNextArticleDate(): Observable<Date> {
     return this.getLastArticleDate().pipe(
       map(lastArticleDate => {
         if (!lastArticleDate) {
-          // Si aucun article n'est publié, retourne une date par défaut (dans 2 semaines)
           const defaultNextArticleDate = new Date();
           defaultNextArticleDate.setDate(defaultNextArticleDate.getDate() + 14);
           return defaultNextArticleDate;
         }
 
-        // Clone la date du dernier article pour éviter de la modifier directement
         const nextArticleDate = new Date(lastArticleDate);
 
-        // Ajoute 14 jours
         nextArticleDate.setDate(nextArticleDate.getDate() + 14);
 
         return nextArticleDate;
       })
     );
   }
+
+  getGroupedByYearArticles(): Observable<YearArticles[]>{
+    return this.groupedByYearArticles$;
+  }
+
+  getPublishedArticlesCount(): Observable<number> {
+    return this.groupedByYearArticles$.pipe(
+      map(groupedArticles => 
+        groupedArticles.reduce((total, yearGroup) => total + yearGroup.articles.length, 0)
+      )
+    );
+  }
+}
+
+export interface YearArticles {
+  year: number;
+  articles: Article[];
 }

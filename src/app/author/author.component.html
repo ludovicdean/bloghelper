@@ -1,14 +1,24 @@
-<div class="bg-white shadow-lg rounded-lg overflow-hidden mx-auto max-w-2xl">
-  <div class="p-6">
-    <form (ngSubmit)="onSubmit()" class="flex flex-col">
+<div class="bg-white shadow-lg rounded-lg overflow-hidden mx-auto max-w-2xl w-full p-8">
+  <h2 class="text-2xl font-bold text-gray-800 mb-6">Convertisseur html -> frontmatter</h2>
+  
+  <form (ngSubmit)="onSubmit()" class="flex flex-col space-y-4">
+    <div>
+      <label for="textareaInput" class="block mb-2 text-sm font-medium text-gray-700">Saisissez votre texte :</label>
       <textarea 
-        class="w-full h-32 p-3 mb-4 text-gray-700 border rounded-lg focus:outline-none focus:border-blue-500 resize-none"
+        id="textareaInput"
+        class="w-full h-32 p-3 text-gray-700 border-2 border-yellow-400 rounded-lg focus:outline-none focus:border-yellow-500 resize-none"
         [(ngModel)]="textareaContent"
         name="textareaInput"
         placeholder="Saisissez votre texte ici"
         [ngModelOptions]="{ standalone: true }"
       ></textarea>
-      <button type="submit" class="outline p-3 rounded-md font-bold justify-center my-10" [ngClass]="backgroundColor ? 'bg-slate-950 outline-slate-950 text-yellow-400' : 'bg-yellow-400'">{{ buttonText}}</button>
-    </form>
-  </div>
+    </div>
+    
+    <button 
+      type="submit" 
+      class="items-center px-4 py-2 bg-yellow-400 border-2 border-black text-black font-bold rounded-md hover:bg-yellow-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500 transition-colors duration-200"
+    >
+      {{ buttonText }}
+    </button>
+  </form>
 </div>

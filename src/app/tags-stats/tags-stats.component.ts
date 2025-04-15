@@ -14,13 +14,13 @@ export class TagsStatsComponent {
 @Input() publishedArticlesCount$: Observable<number>;
 
 getPercentage(tag: { nombreArticles: number }, totalPublishedArticles: number): string {
-if (totalPublishedArticles === 0) {
-      return '0%'; // Gérer le cas où il n'y a pas d'articles publiés
-    }
+  if (totalPublishedArticles === 0) {
+        return '0%';
+      }
 
-    const percentage = (tag.nombreArticles / totalPublishedArticles) * 100;
-    const roundedPercentage = Math.floor(percentage * 10) / 10; // Arrondir à la première décimale en tronquant
+  const percentage = (tag.nombreArticles / totalPublishedArticles) * 100;
+  const roundedPercentage = Math.floor(percentage * 10) / 10; 
 
-    return `${roundedPercentage.toFixed(1)}%`;
+  return `${roundedPercentage.toFixed(1)}%`;
 }
 }

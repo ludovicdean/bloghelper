@@ -1,21 +1,29 @@
 import { ChangeDetectorRef, Component } from '@angular/core';
 import { NavLinkComponent } from "../nav-link/nav-link.component";
+import { Router } from '@angular/router';
+import { NgClass } from '@angular/common';
 
 @Component({
   selector: 'app-header',
-  imports: [NavLinkComponent],
+  imports: [NavLinkComponent, NgClass],
   templateUrl: './header.component.html',
   styleUrl: './header.component.css'
 })
 export class HeaderComponent {
-  isMenuOpen = false;
 
-  constructor(private cdr: ChangeDetectorRef) {}
+  constructor(private router: Router, private cdr: ChangeDetectorRef) {}
 
-  toggleMenu() {
+  isMenuOpen: boolean = false;
+
+  toggleMenu(){
     this.isMenuOpen = !this.isMenuOpen;
-    console.log(this.isMenuOpen);
-    document.body.classList.toggle('overflow-hidden');
-    this.cdr.detectChanges();
+  }
+
+  closeMenu() {
+    this.isMenuOpen = false;
+  }
+  
+  isRouteActive(route: string): boolean {
+    return this.router.url === route;
   }
 }

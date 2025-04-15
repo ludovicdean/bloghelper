@@ -1,5 +1,5 @@
-<div *ngIf="publishedArticles$ | async as articles" class="container mx-auto px-4 py-8">
-    <ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+<div *ngIf="articles$ | async as articles" class="container mx-auto px-4 py-8">
+    <ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-6">
       <li *ngFor="let article of articles" class="list-none">
         <app-card [article]="article"></app-card>
       </li>

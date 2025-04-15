@@ -1,10 +1,9 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { NgClass } from '@angular/common';
 
 @Component({
   selector: 'app-author',
-  imports: [FormsModule, NgClass],
+  imports: [FormsModule],
   templateUrl: './author.component.html',
   styleUrl: './author.component.css',
   standalone: true,
