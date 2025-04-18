@@ -13,4 +13,5 @@ export class ArticlesStatsComponent {
   @Input() publishedArticlesCount$: Observable<number>;
   @Input() unPublishedArticlesCount$: Observable<number>;
   @Input() lastArticleDate$: Observable<Date>;
+  @Input() nextArticleDate$: Observable<Date>;
 }

@@ -1,7 +1,7 @@
   <div class="bg-white p-6 rounded-lg shadow-lg">
     <h2 class="text-2xl font-bold mb-4 text-gray-800">Répartition par Tag</h2>
     <div class="h-64 bg-yellow-50 rounded-lg flex items-center justify-center p-4">
-      <ul *ngIf="tagsData$ | async as tags" class="w-full space-y-3">
+      <ul *ngIf="tagsData$ | async as tags" class="w-full space-y-2">
         <li *ngFor="let tag of tags" class="list-none">
           <div class="flex items-center">
             <span class="text-sm font-medium text-gray-700 w-32 truncate">{{ tag.name }}</span>
