@@ -7,7 +7,6 @@ import { AsyncPipe, NgFor, NgIf } from '@angular/common';
   selector: 'app-tags-stats',
   imports: [NgIf, NgFor, AsyncPipe],
   templateUrl: './tags-stats.component.html',
-  styleUrl: './tags-stats.component.css'
 })
 export class TagsStatsComponent {
 @Input() tagsData$: Observable<Tag[]>;

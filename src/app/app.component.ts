@@ -6,7 +6,6 @@ import { HeaderComponent } from './header/header.component';
   selector: 'app-root',
   imports: [HeaderComponent, RouterOutlet],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
 })
 export class AppComponent {
   title = 'bloghelper';

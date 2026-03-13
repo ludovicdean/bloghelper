@@ -4,7 +4,6 @@ import { Component, Input } from '@angular/core';
   selector: 'app-image-link',
   imports: [],
   templateUrl: './image-link.component.html',
-  styleUrl: './image-link.component.css'
 })
 export class ImageLinkComponent {
 @Input() logo: string | null;

@@ -7,13 +7,12 @@ import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
   standalone: true,
   imports: [NgIf],
   templateUrl: './image-converter.component.html',
-  styleUrls: ['./image-converter.component.css']
 })
 export class ImageConverterComponent {
   @ViewChild('jpgImage') jpgImage: ElementRef;
   webpDataURL: SafeUrl = '';
   downloadLinkVisible: boolean = false;
-  downloadFileName: string = 'image'; // Valeur par défaut pour éviter undefined
+  downloadFileName: string = 'image';
 
   constructor(private sanitizer: DomSanitizer) { }
 

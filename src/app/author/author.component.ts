@@ -5,7 +5,6 @@ import { FormsModule } from '@angular/forms';
   selector: 'app-author',
   imports: [FormsModule],
   templateUrl: './author.component.html',
-  styleUrl: './author.component.css',
   standalone: true,
 })
 export class AuthorComponent {

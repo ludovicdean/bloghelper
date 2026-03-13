@@ -6,7 +6,6 @@ import { RouterLink } from '@angular/router';
   selector: 'app-nav-link',
   imports: [RouterLink, NgClass],
   templateUrl: './nav-link.component.html',
-  styleUrl: './nav-link.component.css'
 })
 export class NavLinkComponent {
 @Input() route: string;

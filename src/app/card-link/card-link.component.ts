@@ -5,7 +5,6 @@ import { environment } from '../../env/env';
   selector: 'app-card-link',
   imports: [],
   templateUrl: './card-link.component.html',
-  styleUrl: './card-link.component.css'
 })
 export class CardLinkComponent {
 @Input() url?: string;

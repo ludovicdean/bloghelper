@@ -7,7 +7,6 @@ import { NgClass } from '@angular/common';
   selector: 'app-header',
   imports: [NavLinkComponent, NgClass],
   templateUrl: './header.component.html',
-  styleUrl: './header.component.css'
 })
 export class HeaderComponent {
 

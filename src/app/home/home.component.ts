@@ -12,7 +12,6 @@ import { BlogStatusBannerComponent } from "../blog-status-banner/blog-status-ban
   selector: 'app-home',
   imports: [TagsStatsComponent, ArticlesStatsComponent, UsefulLinksComponent, BlogStatusBannerComponent, BlogStatusBannerComponent],
   templateUrl: './home.component.html',
-  styleUrl: './home.component.css'
 })
 
 export class HomeComponent implements OnInit {
@@ -30,10 +29,15 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(){
     this.publishedArticlesCount$ = this.blogService.getPublishedArticlesCount();
+
     this.unPublishedArticlesCount$ = this.blogService.getUnpublishedArticlesCount();
+
     this.tagsData$ = this.tagService.getTagsData();
+
     this.tagDataCount$ = this.tagService.getTagsDataCount();
+
     this.blogService.getNextArticleDate();
+
     this.totalArticlesCount$ = combineLatest([
       this.publishedArticlesCount$,
       this.unPublishedArticlesCount$

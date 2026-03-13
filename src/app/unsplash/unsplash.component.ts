@@ -7,7 +7,6 @@ import { CommonModule, NgClass, NgSwitch } from '@angular/common';
   selector: 'app-unsplash',
   imports: [AuthorComponent, ImageConverterComponent, NgClass, CommonModule, NgSwitch],
   templateUrl: './unsplash.component.html',
-  styleUrl: './unsplash.component.css',
   standalone: true
 })
 export class UnsplashComponent implements OnInit {

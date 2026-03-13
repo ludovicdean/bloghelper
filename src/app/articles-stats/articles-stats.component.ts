@@ -6,7 +6,6 @@ import { Observable } from 'rxjs';
   selector: 'app-articles-stats',
   imports: [AsyncPipe, DatePipe],
   templateUrl: './articles-stats.component.html',
-  styleUrl: './articles-stats.component.css'
 })
 export class ArticlesStatsComponent {
   @Input() totalArticlesCount$: Observable<number>;

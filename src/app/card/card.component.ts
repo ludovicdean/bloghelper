@@ -7,7 +7,6 @@ import { CardLinkComponent } from "../card-link/card-link.component";
   selector: 'app-card',
   imports: [DatePipe, NgFor, NgClass, CardLinkComponent],
   templateUrl: './card.component.html',
-  styleUrl: './card.component.css'
 })
 export class CardComponent {
 @Input() article: Article;

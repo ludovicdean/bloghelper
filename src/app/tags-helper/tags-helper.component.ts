@@ -9,7 +9,6 @@ import { CardLinkComponent } from "../card-link/card-link.component";
   selector: 'app-tags-helper',
   imports: [AsyncPipe, NgFor, NgIf, CommonModule, CardLinkComponent],
   templateUrl: './tags-helper.component.html',
-  styleUrl: './tags-helper.component.css'
 })
 export class TagsHelperComponent {
 tags$: Observable<Tag[]>;
