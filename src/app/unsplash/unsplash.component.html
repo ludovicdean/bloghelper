@@ -1,12 +1,12 @@
 <div class="flex mb-4">
-  <button (click)="setActiveTab('author')" [ngClass]="{'text-yellow-400 font-semibold': activeTab === 'author'}"
-    class="py-2 px-4 text-2xl text-gray-800">
-    Infos photo
-  </button>
   <button (click)="setActiveTab('imageConverter')"
     [ngClass]="{'text-yellow-400 font-semibold': activeTab === 'imageConverter'}"
     class="py-2 px-4 text-2xl text-gray-800">
     Jpg to WebP
+  </button>
+  <button (click)="setActiveTab('author')" [ngClass]="{'text-yellow-400 font-semibold': activeTab === 'author'}"
+    class="py-2 px-4 text-2xl text-gray-800">
+    Infos photo
   </button>
 </div>
 

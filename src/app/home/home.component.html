@@ -1,17 +1,12 @@
 <div class="container mx-auto px-6">
   <h1 class="text-3xl font-bold mb-6">Dashboard</h1>
 
-  <app-blog-status-banner [isLastArticleOld$]="isLastArticleOld$" [nextArticleDate$]="nextArticleDate$"/>
+  <app-blog-status-banner [isLastArticleOld$]="isLastArticleOld$" [nextArticleDate$]="nextArticleDate$" />
   <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-    <app-articles-stats
-      [totalArticlesCount$]="totalArticlesCount$"
-      [publishedArticlesCount$]="publishedArticlesCount$"
-      [unPublishedArticlesCount$]="unPublishedArticlesCount$"
-      [lastArticleDate$]="lastArticleDate$"
-      [nextArticleDate$]="nextArticleDate$"
-      class="flex-1"
-    />
-    <app-tags-stats [tagsData$]="tagsData$" [publishedArticlesCount$]="publishedArticlesCount$" class="flex-1" />
+    <app-articles-stats [totalArticlesCount$]="totalArticlesCount$" [publishedArticlesCount$]="publishedArticlesCount$"
+      [unPublishedArticlesCount$]="unPublishedArticlesCount$" [lastArticleDate$]="lastArticleDate$"
+      [nextArticleDate$]="nextArticleDate$" class="flex-1" />
+    <app-tags-stats [tagsData$]="tagDataCount$" [publishedArticlesCount$]="publishedArticlesCount$" class="flex-1" />
   </div>
   <div class="bg-white p-6 rounded-lg shadow-lg h-full">
     <app-useful-links />

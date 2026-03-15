@@ -7,6 +7,7 @@ import { TagsStatsComponent } from '../tags-stats/tags-stats.component';
 import { ArticlesStatsComponent } from "../articles-stats/articles-stats.component";
 import { UsefulLinksComponent } from "../useful-links/useful-links.component";
 import { BlogStatusBannerComponent } from "../blog-status-banner/blog-status-banner.component";
+import { TagCount } from '../model/tagCount';
 
 @Component({
   selector: 'app-home',
@@ -18,16 +19,16 @@ export class HomeComponent implements OnInit {
   publishedArticlesCount$: Observable<number>;
   unPublishedArticlesCount$: Observable<number>;
   tagsData$: Observable<Tag[]>;
-  tagDataCount$: Observable<number>;
+  tagDataCount$: Observable<TagCount[]>;
   test: Date;
   totalArticlesCount$: Observable<number>;
   lastArticleDate$: Observable<Date | null>;
   nextArticleDate$: Observable<Date | null>;
   isLastArticleOld$: Observable<boolean>;
   tags: Tag[];
-  constructor(private blogService: BlogService, private tagService: TagService){}
+  constructor(private blogService: BlogService, private tagService: TagService) { }
 
-  ngOnInit(){
+  ngOnInit() {
     this.publishedArticlesCount$ = this.blogService.getPublishedArticlesCount();
 
     this.unPublishedArticlesCount$ = this.blogService.getUnpublishedArticlesCount();
@@ -46,7 +47,7 @@ export class HomeComponent implements OnInit {
     );
 
     this.lastArticleDate$ = this.blogService.getLastArticleDate();
-    
+
     this.nextArticleDate$ = this.blogService.getNextArticleDate();
 
     this.isLastArticleOld$ = this.lastArticleDate$.pipe(
@@ -55,7 +56,7 @@ export class HomeComponent implements OnInit {
           return false;
         }
 
-        const oneWeekAgo = new Date().getTime() - 7*24*60*60*1000;
+        const oneWeekAgo = new Date().getTime() - 7 * 24 * 60 * 60 * 1000;
         const dateDernierArticle = (typeof lastArticleDate === 'string' ? new Date(lastArticleDate) : lastArticleDate).getTime();
 
         return dateDernierArticle < oneWeekAgo;
