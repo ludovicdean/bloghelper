@@ -1,0 +1,29 @@
+name: CI/CD Bloghelper
+on:
+  push:
+    branches: [ main ]
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Build Docker
+      run: docker build -t bloghelper .
+    
+    - name: Save image
+      run: docker save bloghelper -o bloghelper.tar
+    
+    - name: Deploy Server
+      uses: appleboy/ssh-action@v1.0.3
+      with:
+        host: ${{ secrets.SSH_HOST }}
+        username: ${{ secrets.SSH_USER }}
+        key: ${{ secrets.SSH_PRIVATE_KEY }}
+        args: -o StrictHostKeyChecking=no
+        script: |
+          docker stop bloghelper-app || true
+          docker rm bloghelper-app || true
+          # Transfert tar (simplifié)
+          echo "Image built remotely - manual docker pull or webhook"
+          docker pull bloghelper  # Si registry
