@@ -40,9 +40,12 @@ jobs:
     - name: Deploy Server
       uses: appleboy/ssh-action@v1.0.3
       with:
-        host: ${{ secrets.SSH_HOST }}  # 192.168.1.105 LOCAL !
+        host: ${{ secrets.SSH_HOST }}
         username: ${{ secrets.SSH_USER }}
         key: ${{ secrets.SSH_PRIVATE_KEY }}
+        port: 22
+        script_stop: true
+        debug: true
         script: |
           docker stop bloghelper-app || true
           docker rm bloghelper-app || true
