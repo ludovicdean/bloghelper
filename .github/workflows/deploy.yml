@@ -8,20 +8,25 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     
-    - name: Node build
+    - name: Setup Node
       uses: actions/setup-node@v4
       with:
-        node-version: 20
-    - run: npm ci
-    - run: npm run build --prod  # Crée dist/bloghelper/browser
+        node-version: '20'
+        cache: 'npm'
+    
+    - name: Install dependencies
+      run: npm install
+    
+    - name: Build Angular
+      run: npm run build
     
     - name: Build Docker
       run: docker build -t bloghelper .
     
-    - name: Save image
+    - name: Save Docker image
       run: docker save bloghelper -o bloghelper.tar
     
-    - name: Deploy Server
+    - name: Copy image to server
       uses: appleboy/scp-action@v0.1.4
       with:
         host: ${{ secrets.SSH_HOST }}
@@ -30,15 +35,17 @@ jobs:
         source: "bloghelper.tar"
         target: "/home/ludo/"
     
-    - name: Exec on Server
+    - name: Deploy on server
       uses: appleboy/ssh-action@v1.0.3
       with:
         host: ${{ secrets.SSH_HOST }}
         username: ${{ secrets.SSH_USER }}
         key: ${{ secrets.SSH_PRIVATE_KEY }}
+        args: '-o StrictHostKeyChecking=no'
         script: |
+          cd /home/ludo
           docker stop bloghelper-app || true
           docker rm bloghelper-app || true
-          docker load -i ~/bloghelper.tar
+          docker load -i bloghelper.tar
           docker run -d --restart unless-stopped --name bloghelper-app -p 8080:80 bloghelper
-          rm ~/bloghelper.tar
+          rm bloghelper.tar
