@@ -33,56 +33,18 @@ jobs:
           push: true
           tags: ${{ env.IMAGE_NAME }}:latest
   deploy:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     needs: build-and-push
-
     steps:
-      - name: Debug – variables d'environnement
+      - name: Login to GitHub Container Registry
+        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+      - name: Deploy
         run: |
-          echo "=== VARIABLES CI ==="
-          echo "IMAGE_NAME   : ${{ env.IMAGE_NAME }}"
-          echo "github.actor : ${{ github.actor }}"
-          echo "github.repo  : ${{ github.repository }}"
-          echo "github.owner : ${{ github.repository_owner }}"
-          echo "github.ref   : ${{ github.ref }}"
-          echo "github.sha   : ${{ github.sha }}"
-          echo ""
-          echo "=== SECRETS (présence uniquement) ==="
-          echo "SERVER_HOST     : ${{ secrets.SSH_HOST != '' && 'SET ✓' || 'MISSING ✗' }}"
-          echo "SERVER_USER     : ${{ secrets.SSH_USER != '' && 'SET ✓' || 'MISSING ✗' }}"
-          echo "SERVER_SSH_KEY  : ${{ secrets.SSH_PRIVATE_KEY != '' && 'SET ✓' || 'MISSING ✗' }}"
-
-      - name: Deploy via SSH
-        uses: appleboy/ssh-action@v1
-        with:
-          host: ${{ secrets.SSH_HOST }}
-          username: ${{ secrets.SSH_USER }}
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          script: |
-            echo "=== CONNEXION SSH OK ==="
-            echo "Hôte      : $(hostname)"
-            echo "Utilisateur: $(whoami)"
-            echo "Date      : $(date)"
-            echo ""
-
-            echo "=== PULL IMAGE ==="
-            docker pull ${{ env.IMAGE_NAME }}:latest
-            echo "Pull OK ✓"
-            echo ""
-
-            echo "=== ARRÊT CONTENEUR EXISTANT ==="
-            docker stop bloghelper && echo "Stop OK ✓" || echo "Aucun conteneur à stopper"
-            docker rm bloghelper   && echo "Remove OK ✓" || echo "Aucun conteneur à supprimer"
-            echo ""
-
-            echo "=== DÉMARRAGE ==="
-            docker run -d \
-              --name bloghelper \
-              --restart unless-stopped \
-              -p 3000:3000 \
-              ${{ env.IMAGE_NAME }}:latest
-            echo "Run OK ✓"
-            echo ""
-
-            echo "=== ÉTAT FINAL ==="
-            docker ps --filter name=bloghelper --format "table {{.Names}}\t{{.Status}}\t{{.Ports}}"
+          docker pull ${{ env.IMAGE_NAME }}:latest
+          docker stop bloghelper || true
+          docker rm bloghelper || true
+          docker run -d \
+            --name bloghelper \
+            --restart unless-stopped \
+            -p 3000:3000 \
+            ${{ env.IMAGE_NAME }}:latest
