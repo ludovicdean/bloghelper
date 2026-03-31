@@ -6,7 +6,7 @@ on:
 
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: ghcr.io/${{ github.repository_owner }}/nom-de-ton-app
+  IMAGE_NAME: ghcr.io/${{ github.repository_owner }}/bloghelper
 
 jobs:
   build-and-push:
@@ -32,19 +32,3 @@ jobs:
           context: .
           push: true
           tags: ${{ env.IMAGE_NAME }}:latest
-
-  deploy:
-    needs: build-and-push
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Deploy sur le serveur
-        uses: appleboy/ssh-action@v1
-        with:
-          host: ${{ secrets.SSH_HOST }}
-          username: ${{ secrets.SSH_USER }}
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          script: |
-            cd /opt/mes-apps
-            docker compose pull nom-de-ton-app
-            docker compose up -d nom-de-ton-app
