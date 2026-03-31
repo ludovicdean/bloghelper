@@ -46,5 +46,5 @@ jobs:
           docker run -d \
             --name bloghelper \
             --restart unless-stopped \
-            -p 3000:3000 \
+            -p 3000:80 \
             ${{ env.IMAGE_NAME }}:latest
